@@ -1,0 +1,38 @@
+// No. Guessing game 
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    srand( int (time(0))); // Seed the random number generator
+    int Random_Number = rand() % 100 + 1; // Generate a random number between 1 and 100
+    int guess;
+    bool guessed = false;
+
+    cout << "Welcome to the number guessing game!" << endl;
+    cout << "I have selected a number between 1 and 100 . " << endl;
+    cout << "Try to guess it!" << endl;
+    while (!guessed) {
+        cout << "Enter your guess: ";
+        cin >> guess;
+
+        if (cin.fail()) {
+            cin.clear(); // clear the error flag
+            cin.ignore(10000, '\n'); // discard invalid input
+            cout << "Invalid input. Please enter a valid number." << endl;
+            continue;
+        }
+
+        if (guess < Random_Number) {
+            cout << "Your guess is too low. Try again." << endl;
+        } else if (guess > Random_Number) {
+            cout << "Your guess is too high. Try again." << endl;
+        } else {
+            cout << "Congratulations! You've guessed the number!" << endl;
+            guessed = true;
+        }
+    }
+
+    return 0;
+}
